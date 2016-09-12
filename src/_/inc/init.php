@@ -1,35 +1,13 @@
 <?php
-	set_include_path( get_include_path() . PATH_SEPARATOR . $_SERVER['DOCUMENT_ROOT'] );
 
-	require("_/inc/functions.php");
+require("_/inc/config.php");
+require("_/inc/db.php");
+require("_/inc/api.php");
+require("_/inc/common.php");
 
-	//Constants
-	define("FROM_EMAIL", "mydomain.ltd <webform@mydomain.ltd>");
-	
-	//Setup Variable for tracking VirtualPageViews in analytics.
-	$VirtualPageView = "";
-
-	//Variables to store Site/URL information
-	$ServerName = $_SERVER['SERVER_NAME'];
-	$SiteSection = "";
-	$SubSection = "";
-
-	$RequestMethod = $_SERVER['REQUEST_METHOD'];
-	$FormErrors = array();
-
-	setSectionInfo();
-
-	//SET SERVER SPECIFIC VARIABLES AND CONSTANTS
-	switch ($ServerName) {
-		case 'mytestdomain.ltd':
-			define("CONTACT_EMAIL", "");
-			define("ANALYTICS_ID", "");
-			break;
-		
-		case 'mydomain.ltd':
-			define("CONTACT_EMAIL", "");
-			define("ANALYTICS_ID", "");
-			break;
-	}
-
+if ( _SHOW_ERRORS )
+{
+  error_reporting( E_ALL );
+  ini_set( 'display_errors', 1 );
+}
 ?>

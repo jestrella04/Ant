@@ -1,8 +1,0 @@
-{
-    "config": {
-        "vendor-dir": "src/_/inc/vendor"
-    },
-    "require": {
-        "phpmailer/phpmailer": "5.2.*"
-    }
-}

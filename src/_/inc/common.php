@@ -22,7 +22,7 @@
 		}
 	}
 
-	function slugify($text, $makeLowerCase = true) { 
+	function slugify($text, $makeLowerCase = true) {
 		// replace non letter or digits by -
 		$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
 
@@ -74,6 +74,22 @@
 		}
 
 		return false;
+	}
+
+	function FormatApiResponse( $result, $message, $params = $array() )
+	{
+		$data = array();
+
+		if ( ! empty( $result ) && ! empty( $message ) && ! empty( $params ) && is_array( $params ) )
+		{
+			$data = array(
+				'result' => $result,
+				'message' => $message,
+				'params' => $params
+			);
+		}
+
+		return json_encode( data );
 	}
 
 ?>
