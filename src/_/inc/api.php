@@ -36,7 +36,7 @@ function IsValidApiCall( $method )
     'sp_user_update'
   );
 
-  if ( in array( $method, $valid_api_calls ) )
+  if ( in_array( $method, $valid_api_calls ) )
   {
     return true;
   }

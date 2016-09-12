@@ -1,5 +1,4 @@
 <?php
-
 require("_/inc/config.php");
 require("_/inc/db.php");
 require("_/inc/api.php");

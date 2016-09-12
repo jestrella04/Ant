@@ -1,5 +1,5 @@
 <?php
-public class Database()
+class Database
 {
   private $dbi;
   private $dsn;
@@ -21,12 +21,3 @@ public class Database()
     $this->dsb = null;
   }
 }
-/*
-
-// Llamada al procedimiento almacenado
-$query = $db->query( 'CALL sp_articulo_inventario( 1 )' );
-$query->setFetchMode(PDO::FETCH_ASSOC);
-$data = $query->fetchAll();
-
-// Mostrar datos crudos en pantalla
-print_r( $data );*/

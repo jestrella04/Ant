@@ -1,4 +1,4 @@
-s<?php
+<?php
 /** The name of the database for WordPress */
 define('_DB_NAME', 'ant');
 

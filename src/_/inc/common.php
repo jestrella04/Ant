@@ -76,7 +76,7 @@
 		return false;
 	}
 
-	function FormatApiResponse( $result, $message, $params = $array() )
+	function FormatApiResponse( $result, $message, $params = array() )
 	{
 		$data = array();
 
@@ -89,7 +89,7 @@
 			);
 		}
 
-		return json_encode( data );
+		return json_encode( $data );
 	}
 
 ?>
