@@ -1,31 +1,10 @@
 <?php
-require( '_/inc/init.php' );
+namespace Ant\Ant;
 
-$api_request = htmlentities( $_POST['ant_request_data'] );
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
-if ( ! is_array( $api_request ) )
-{
-  exit( FormatApiResponse( 0, "The request data is invalid" ) );
-}
+require('_/inc/init.php');
 
-else
-{
-  $api_request_method = $api_request['api_request_method'];
-  $api_request_params = $api_request['api_request_params'];
+$api_request = isset($_POST['ant_request_data']) ? htmlentities($_POST['ant_request_data']) : null ;
 
-  if ( empty( $api_request_method ) || ! is_array( $api_request_params ) )
-  {
-    exit( FormatApiResponse( 0, "The request data is invalid" ) );
-  }
-
-  elseif ( IsValidApiCall( $api_request_method ) && function_exists( $api_request_method ) )
-  {
-    ExecuteApiCall( $api_request_method, $api_request_params );
-  }
-
-  else
-  {
-    exit( FormatApiResponse( 0, "The requested method does not exist" ) );
-  }
-}
-?>
+$call = new ApiRequest($api_request);

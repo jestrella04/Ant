@@ -1,95 +1,63 @@
 <?php
-	function setSectionInfo() {
-		global $SiteSection, $SubSection;
-		$SiteSection = "";
-		$SubSection = "";
+function slugify($text, $makeLowerCase = true)
+{
+	// replace non letter or digits by -
+	$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
 
-		$path = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
-		$pathInfo = trim(pathinfo($path, PATHINFO_DIRNAME));
+	// trim
+	$text = trim($text, '-');
 
-		if ($pathInfo != "/") {
-			$pathInfo = trim($pathInfo, "/");
-			$pathParts = explode("/",$pathInfo);
-			$SiteSection = $pathParts[0];
+	// transliterate
+	$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
 
-			if (count($pathParts) > 1) {
-				$SubSection = $pathParts[1];
-			}
-		} else {
-			if (basename($_SERVER['SCRIPT_NAME']) == "index.php") {
-				$SiteSection = "home";
-			}
-		}
-	}
-
-	function slugify($text, $makeLowerCase = true) {
-		// replace non letter or digits by -
-		$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
-
-		// trim
-		$text = trim($text, '-');
-
-		// transliterate
-		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-		// lowercase
-		if ($makeLowerCase) {
-			$text = strtolower($text);
-		}
-
-		// remove unwanted characters
-		$text = preg_replace('~[^-\w]+~', '', $text);
-
-		if (empty($text)) {
-			return 'n-a';
-		}
-
-		return $text;
-	}
-
-	function ScrubText($text) {
-		if (!isset($text) || trim($text)==='') {
-			return '';
-		}
-
-		return trim($text);
-	}
-
-	function SendMail($to, $subject, $message, $html = true, $from = FROM_EMAIL) {
-		$headers = "";
-		if ($html) {
-			$headers  = 'MIME-Version: 1.0' . "\r\n";
-			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		}
-		$headers .= "From: " . $from;
-
-		return mail($to, $subject, $message, $headers);
-	}
-
-	function HasFormError($fieldName) {
-		global $FormErrors;
-
-		if (isset($FormErrors[$fieldName])) {
-			return $FormErrors[$fieldName];
-		}
-
-		return false;
-	}
-
-	function FormatApiResponse( $result, $message, $params = array() )
+	// lowercase
+	if ($makeLowerCase)
 	{
-		$data = array();
-
-		if ( ! empty( $result ) && ! empty( $message ) && ! empty( $params ) && is_array( $params ) )
-		{
-			$data = array(
-				'result' => $result,
-				'message' => $message,
-				'params' => $params
-			);
-		}
-
-		return json_encode( $data );
+		$text = strtolower($text);
 	}
 
-?>
+	// remove unwanted characters
+	$text = preg_replace('~[^-\w]+~', '', $text);
+
+	if (empty($text))
+	{
+		return 'n-a';
+	}
+
+	return $text;
+}
+
+function scrubText($text)
+{
+	if (! isset($text) || trim($text) === '')
+	{
+		return '';
+	}
+
+	return trim($text);
+}
+
+function formatApiResponse($result, $message, $params = array())
+{
+	$data = array();
+
+	if (isset($result) && ! empty($message) && is_array($params))
+	{
+		$data = array(
+			'result' => $result,
+			'response' => $message,
+			'params' => $params
+		);
+	}
+
+	else
+	{
+		$data = array(
+			'result' => 0,
+			'message' => "The request data is invalid",
+			'params' => array()
+		);
+	}
+
+	return json_encode($data);
+}

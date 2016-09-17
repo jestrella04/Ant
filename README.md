@@ -1,2 +1,2 @@
 # ant
-A small, beautiful and powerful bug tracker system.
+A small, beautiful and powerful bug tracking system.
