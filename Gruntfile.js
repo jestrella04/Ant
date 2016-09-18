@@ -17,10 +17,10 @@ module.exports = function (grunt) {
     //  put here for ease of maintenance. Update the value here, and all other places are updated
     //  automagically.
     var yeomanConfig = {
-        app: 'src',
+        app: 'app',
         dist: 'dist',
         siteURL: 'mydomain.ltd',
-        devURL: 'mytestdomain.ltd',
+        devURL: 'http://192.168.56.101/Webapps/Ant/app/',
         devPort: 80
     };
 
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         //  The watch opertation will watch a set of files
         //  and run other operations when those files are
         //  edited or otherwised changed.
-        watch: { 
+        watch: {
             sass: {
                 files: ['<%= yeoman.app %>/_/css/**/*.{scss,sass}'], //Watch these files, and...
                 tasks: ['sass:server'] //run this operation when the files change.

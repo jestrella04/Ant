@@ -2,5 +2,5 @@
 .tmp
 dist
 node_modules
-src/_/bower_components
-src/_/inc/classes/vendor
+app/_/bower_components
+app/_/inc/classes/vendor

@@ -13,9 +13,7 @@ require ('_/inc/init.php');
     </head>
     <body>
         <?php require ('_/inc/header.php'); ?>
-        <div class="fluid-container">
-            <?php include ('_/inc/view/login.php'); ?>
-        </div>
+        <?php include ('_/inc/view/login.php'); ?>
 
         <!-- Footer -->
         <?php require ('_/inc/footer.php'); ?>
