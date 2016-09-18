@@ -3,7 +3,7 @@
     "description": "A small, beautiful and powerful bug tracking system.",
     "type": "project",
     "config": {
-        "vendor-dir": "src/_/inc/classes/vendor"
+        "vendor-dir": "_/inc/classes/vendor"
     },
     "require": {
         "phpmailer/phpmailer": "5.2.*"
@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Ant\\Ant\\": "_/inc/classes/ant/"
+            "Ant\\": "_/inc/classes/ant"
         }
     }
 }

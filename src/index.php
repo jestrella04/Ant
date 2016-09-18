@@ -1,5 +1,5 @@
 <?php
-namespace Ant\Ant;
+namespace Ant;
 
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 

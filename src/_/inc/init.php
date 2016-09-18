@@ -1,6 +1,4 @@
 <?php
-namespace Ant\Ant;
-
 require('_/inc/config.php');
 require('_/inc/common.php');
 require('_/inc/classes/vendor/autoload.php');

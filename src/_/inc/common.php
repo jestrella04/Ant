@@ -37,25 +37,16 @@ function scrubText($text)
 	return trim($text);
 }
 
-function formatApiResponse($result, $message, $params = array())
+function formatApiResponse($result, $response, $params)
 {
 	$data = array();
 
-	if (isset($result) && ! empty($message) && is_array($params))
+	if (isset($result) && ! empty($response) && is_array($params))
 	{
 		$data = array(
 			'result' => $result,
-			'response' => $message,
+			'response' => $response,
 			'params' => $params
-		);
-	}
-
-	else
-	{
-		$data = array(
-			'result' => 0,
-			'message' => "The request data is invalid",
-			'params' => array()
 		);
 	}
 

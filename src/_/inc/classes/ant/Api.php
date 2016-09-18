@@ -1,54 +1,54 @@
 <?php
-namespace Ant\Ant;
+namespace Ant;
 
-use Database;
+use PDO;
 
 class Api
 {
     private $dbo = null;
     private $database = null;
-    private $valid_api_calls = array();
+    private $validApiCalls = array();
 
     public function __construct()
     {
         $this->database = new Database();
 
-        $this->valid_api_calls = array(
-            'ClientSessionPrepare',
-            'IssueAttachmentAdd',
-            'IssueAttachmentDelete',
-            'IssueCategoryCreate',
-            'IssueCategoryDelete',
-            'IssueCategoryGet',
-            'IssueCategoryUpdate',
-            'IssueCommentAdd',
-            'IssueCreate',
-            'IssueDelete',
-            'IssueGet',
-            'IssueUpdate',
-            'ProjectCreate',
-            'ProjectDelete',
-            'ProjectGet',
-            'ProjectUpdate',
-            'ReportIssue',
-            'ReportProject',
-            'ReportRecentActivity',
-            'UserCreate',
-            'UserDelete',
-            'UserGet',
-            'UserPasswordUpdate',
-            'UserPermissionGet',
-            'UserRoleCreate',
-            'UserRoleDelete',
-            'UserRoleGet',
-            'UserRoleUpdate',
-            'UserUpdate'
+        $this->validApiCalls = array(
+            'clientSessionPrepare',
+            'issueAttachmentAdd',
+            'issueAttachmentDelete',
+            'issueCategoryCreate',
+            'issueCategoryDelete',
+            'issueCategoryGet',
+            'issueCategoryUpdate',
+            'issueCommentAdd',
+            'issueCreate',
+            'issueDelete',
+            'issueGet',
+            'issueUpdate',
+            'projectCreate',
+            'projectDelete',
+            'projectGet',
+            'projectUpdate',
+            'reportIssue',
+            'reportProject',
+            'reportRecentActivity',
+            'userCreate',
+            'userDelete',
+            'userGet',
+            'userPasswordUpdate',
+            'userPermissionGet',
+            'userRoleCreate',
+            'userRoleDelete',
+            'userRoleGet',
+            'userRoleUpdate',
+            'userUpdate'
         );
     }
 
-    private function isValidApiCall( $request_method )
+    private function isValidApiCall( $requestMethod )
     {
-        if ( in_array( $request_method, $this->valid_api_calls ) )
+        if ( in_array( $requestMethod, $this->validApiCalls ) )
         {
             return true;
         }
@@ -68,12 +68,12 @@ class Api
         $this->dbo = null;
     }
 
-    public function executeApiCall( $request_method, $request_params )
+    public function executeApiCall( $requestMethod, $requestParams )
     {
-        if ( $this->isValidApiCall( $request_method ) )
+        if ( $this->isValidApiCall( $requestMethod ) )
         {
             $this->databaseOpen();
-            $response = $this->$request_method( $request_params );
+            $response = $this->$requestMethod( $requestParams );
             $this->databaseClose();
 
             return formatApiResponse( '1', 'The request was completed successfully', $response );
@@ -87,11 +87,11 @@ class Api
 
     public function clientSessionPrepare( $params )
     {
-        $client_session_user = $params[0];
-        $client_session_show_errors = $params[1];
+        $clientSessionUser = $params[0];
+        $clientSessionDebug = $params[1];
 
-        $query = $this->dbo->query( "CALL sp_client_session_prepare( '$client_session_user', $client_session_show_errors )" );
-        $query->setFetchMode( PDO::FETCH_ASSOC );
+        $query = $this->dbo->query("CALL sp_client_session_prepare( '$clientSessionUser', $clientSessionDebug )");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
         $data = $query->fetchAll();
 
         return $data;

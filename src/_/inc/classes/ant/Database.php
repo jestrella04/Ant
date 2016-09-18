@@ -1,5 +1,7 @@
 <?php
-namespace Ant\Ant;
+namespace Ant;
+
+use PDO;
 
 class Database
 {
@@ -26,9 +28,9 @@ class Database
             //echo "Connection failed: " . $e->getMessage();
         }
 
-        if ($this->dbo)
+        if ($this->pdo)
         {
-            return $this->dbo;
+            return $this->pdo;
         }
 
         return false;

@@ -1,10 +1,11 @@
 <?php
-namespace Ant\Ant;
+namespace Ant;
 
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 require('_/inc/init.php');
 
-$api_request = isset($_POST['ant_request_data']) ? htmlentities($_POST['ant_request_data']) : null ;
+$apiRequest = isset($_POST['ant_request_data']) ? htmlentities($_POST['ant_request_data']) : null;
+$request = new ApiRequest($apiRequest);
 
-$call = new ApiRequest($api_request);
+echo $request->getResponse();
