@@ -6,8 +6,8 @@
         <link rel="shortcut icon" href="http://<?php echo($ServerName); ?>/favicon.ico">
 
         <!-- build:css({.tmp,src}) /_/css/bootstrap.css -->
-        <link rel="stylesheet" href="/_/bower_components/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="/_/bower_components/bootstrap/dist/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="../_/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../_/bower_components/bootstrap/dist/css/bootstrap-theme.css">
         <!-- endbuild -->
 
         <!-- build:css({.tmp,src}) /_/css/site-styles.css -->
