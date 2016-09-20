@@ -5,12 +5,13 @@
         <!-- Custom Favicon -->
         <link rel="shortcut icon" href="favicon.ico">
 
-        <!-- build:css({.tmp,src}) /_/css/bootstrap.css -->
+        <!-- build:css({.tmp,app}) _/css/bootstrap.css -->
         <link rel="stylesheet" href="_/bower_components/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="_/bower_components/bootstrap/dist/css/bootstrap-theme.css">
         <!-- endbuild -->
 
-        <!-- build:css({.tmp,src}) /_/css/site-styles.css -->
+        <!-- build:css({.tmp,app}) _/css/ant.css -->
         <link rel="stylesheet" href="_/css/main.css">
         <link rel="stylesheet" href="_/css/layout.css">
         <!-- endbuild -->
+
+        <title>Ant Bug Tracker</title>

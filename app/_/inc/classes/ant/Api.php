@@ -3,15 +3,13 @@ namespace Ant;
 
 use PDO;
 
-class Api
+class Api extends Ant
 {
-    private $dbo = null;
-    private $database = null;
     private $validApiCalls = array();
 
     public function __construct()
     {
-        $this->database = new Database();
+        parent::__construct();
 
         $this->validApiCalls = array(
             'clientSessionPrepare',
@@ -56,21 +54,9 @@ class Api
         return false;
     }
 
-    private function databaseOpen()
-    {
-        $this->dbo = $this->database->open();
-    }
-
-    private function databaseClose()
-    {
-        $this->database->close();
-        $this->database = null;
-        $this->dbo = null;
-    }
-
     public function executeApiCall($requestMethod, $requestParams)
     {
-        if ( $this->isValidApiCall($requestMethod))
+        if ($this->isValidApiCall($requestMethod))
         {
             $this->databaseOpen();
             $response = $this->$requestMethod($requestParams);
@@ -81,20 +67,8 @@ class Api
 
         else
         {
-            return formatApiResponse( '1', 'The requested method does not exist' );
+            return formatApiResponse( '1', 'The requested method does not exist', array() );
         }
-    }
-
-    public function clientSessionPrepare($params)
-    {
-        $clientSessionUser = $params[0];
-        $clientSessionDebug = $params[1];
-
-        $query = $this->dbo->query("CALL sp_client_session_prepare('$clientSessionUser', $clientSessionDebug)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
-
-        return $data;
     }
 
     public function issueAttachmentAdd($params)
