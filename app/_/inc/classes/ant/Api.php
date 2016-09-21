@@ -62,13 +62,10 @@ class Api extends Ant
             $response = $this->$requestMethod($requestParams);
             $this->databaseClose();
 
-            return formatApiResponse( '1', 'The request was completed successfully', $response );
+            return $response;
         }
 
-        else
-        {
-            return formatApiResponse( '1', 'The requested method does not exist', array() );
-        }
+        return false;
     }
 
     public function issueAttachmentAdd($params)
@@ -343,7 +340,7 @@ class Api extends Ant
         $userId = $params[0];
 
         $query = $this->dbo->query("CALL sp_user_permission_get('$userId')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->setFetchMode(PDO::FETCH_COLUMN, 0);
         $data = $query->fetchAll();
 
         return $data;

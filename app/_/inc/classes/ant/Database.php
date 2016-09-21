@@ -39,6 +39,6 @@ class Database
     public function close()
     {
         $this->dbo = null;
-        $this->dsn = null;
+        //$this->dsn = null;
     }
 }

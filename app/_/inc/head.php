@@ -9,6 +9,10 @@
         <link rel="stylesheet" href="_/bower_components/bootstrap/dist/css/bootstrap.css">
         <!-- endbuild -->
 
+        <!-- build:css({.tmp,app}) _/css/font-awesome.css -->
+        <link rel="stylesheet" href="_/bower_components/font-awesome/css/font-awesome.css">
+        <!-- endbuild -->
+
         <!-- build:css({.tmp,app}) _/css/ant.css -->
         <link rel="stylesheet" href="_/css/main.css">
         <link rel="stylesheet" href="_/css/layout.css">

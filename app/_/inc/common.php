@@ -37,7 +37,7 @@ function scrubText($text)
 	return trim($text);
 }
 
-function formatApiResponse($result, $response, $params)
+/*function formatApiResponse($result, $response, $params)
 {
 	$data = array();
 
@@ -51,4 +51,14 @@ function formatApiResponse($result, $response, $params)
 	}
 
 	return json_encode($data);
+}*/
+
+function userPermissionCheck($permission, $permissionList)
+{
+	if (is_array($permissionList) && in_array($permission, $permissionList))
+	{
+		return true;
+	}
+
+	return false;
 }

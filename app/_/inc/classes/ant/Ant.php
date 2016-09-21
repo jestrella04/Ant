@@ -19,7 +19,7 @@ class Ant
     protected function databaseClose()
     {
         $this->database->close();
-        $this->database = null;
+        //$this->database = null;
         $this->dbo = null;
     }
 }

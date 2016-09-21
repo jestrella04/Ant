@@ -9,7 +9,6 @@ class SessionHandler
     private $sessionLogin;
     private $sessionLogout;
     private $sessionActive;
-    private $currentTime;
     private $sessionUserId;
     private $sessionUserPassword;
 
@@ -21,12 +20,10 @@ class SessionHandler
         $this->sessionLogin = isset($_POST['user_login']) ? $_POST['user_login'] : false;
         $this->sessionLogout = isset($_POST['user_logout']) ? $_POST['user_logout'] : false;
         $this->sessionActive = isset($_SESSION['user_active']) ? $_SESSION['user_active'] : false;
-        $this->currentTime = time();
 
         if ($this->sessionLogout)
         {
-            $this->sessionUserId = null;
-            $this->sessionUserPassword = null;
+            $this->sessionReset();
         }
 
         else if ($this->sessionLogin)
@@ -39,7 +36,6 @@ class SessionHandler
         else if ($this->sessionActive)
         {
             $this->sessionUserId = isset($_SESSION['user_active_id']) ? $_SESSION['user_active_id'] : null;
-            $this->sessionUserPassword = null;
         }
 
         else
@@ -51,7 +47,9 @@ class SessionHandler
     // Validate session activity
     private function isSessionExpired()
     {
-        if (($this->currentTime - $this->sessionLastUpdate) > $this->sessionTimeout)
+        var_dump($_SESSION);
+        echo "(".time()." - $this->sessionLastUpdate) > $this->sessionTimeout)";
+        if ((time() - $this->sessionLastUpdate) > $this->sessionTimeout)
         {
             return true;
         }
@@ -61,9 +59,9 @@ class SessionHandler
 
     private function sessionInit()
     {
-        $session['user_last_update'] = time();
-        $session['user_active'] = true;
-        $session['user_id'] = $this->sessionUserId;
+        $_SESSION['user_last_update'] = time();
+        $_SESSION['user_active'] = true;
+        $_SESSION['user_id'] = $this->sessionUserId;
     }
 
     private function sessionReset()
@@ -96,29 +94,19 @@ class SessionHandler
             $api = new Api();
 
             // validate user and password
-            $apiRequestParams = array($this->sessionUserId);
-            $apiResponseParams = json_decode($api->executeApiCall('userGet', $apiRequestParams));
+            $id = array($this->sessionUserId);
+            $user = $api->executeApiCall('userGet', $id);
 
-            if ('1' === $apiResponseParams->result)
+            if ($user) $userInfo = $user[0];
+
+            if (isset($userInfo))
             {
-                $user = isset($apiResponseParams->params[0]) ? $apiResponseParams->params[0] : array();
-
-                if (! empty($user))
+                if (isset($this->sessionUserPassword))
                 {
-                    // User exists
-                    if (isset($this->sessionUserPassword))
+                    if (! password_verify($this->sessionUserPassword, $userInfo['password']))
                     {
-                        // User needs to login, let's check the password
-                        if (! password_verify($this->sessionUserPassword, $user->password))
-                        {
-                            $this->sessionError = true;
-                        }
+                        $this->sessionError = true;
                     }
-                }
-
-                else
-                {
-                    $this->sessionError = true;
                 }
             }
 
