@@ -17,8 +17,8 @@ $path = trim($pathInfo, '/');
 
 // Extract desired parts from $path
 $pathParts = explode('/', $path);
-$controller = isset($pathParts[0]) ? $pathParts[0] : "Home";
-$identifier = isset($pathParts[1]) ? $pathParts[1] : 0;
+$controller = ! empty ($pathParts[0]) ? $pathParts[0] : 'Home';
+$identifier = ! empty ($pathParts[1]) ? $pathParts[1] : 0;
 
 // Base path for the app assets
 $baseHref = dirname($_SERVER['SCRIPT_NAME']) . '/';

@@ -87,9 +87,13 @@ function loadController($controller, $identifier)
 			break;
 
 		case 'User':
+			$controller = new User($identifier);
+			break;
+
+		case 'Home':
 			$controller = new Home();
 			break;
 	}
 
-	return $controller;
+	$controller->loadView();
 }

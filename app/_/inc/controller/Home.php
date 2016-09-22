@@ -1,9 +1,14 @@
 <?php
-namespace Ant;
+namespace Ant\Controller;
 
 class Home
 {
     public function __construct()
+    {
+
+    }
+
+    public function loadView()
     {
         if (! isset($currentUser))
         {
