@@ -1,9 +1,9 @@
 <?php
 namespace Ant;
 
-require('_/inc/config.php');
-require('_/inc/common.php');
-require('_/inc/classes/vendor/autoload.php');
+require('_/inc/generic/config.php');
+require('_/inc/generic/common.php');
+require('_/inc/vendor/autoload.php');
 
 if (_SHOW_ERRORS)
 {

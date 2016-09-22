@@ -3,4 +3,4 @@
 dist
 node_modules
 app/_/bower_components
-app/_/inc/classes/vendor
+app/_/inc/vendor
