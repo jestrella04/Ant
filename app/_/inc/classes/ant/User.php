@@ -16,15 +16,10 @@ class User
         $api = new Api;
 
         $id = array($id);
-        $user = $api->executeApiCall('userGet', $id);
+        $userInfo = $api->executeApiCall('userGet', $id);
         $permission = $api->executeApiCall('userPermissionGet', $id);
 
-        if ($user)
-        {
-            $userInfo = $user[0];
-        }
-
-        if (isset($userInfo))
+        if ($userInfo)
         {
             $this->userId = $id;
             $this->userRoleId = $userInfo['user_role_id'];

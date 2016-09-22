@@ -52,8 +52,8 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <p>
-                                            <a href="#" class="btn btn-primary btn-block btn-sm"><span class="fa fa-stats">Link 8</span></a>
-                                            <a href="#" class="btn btn-danger btn-block"><span class="fa fa-off"></span> Logout</a>
+                                            <a href="#" class="btn btn-primary btn-block"><span class="fa fa-user"></span>My Profile</a>
+                                            <a href="#" class="btn btn-danger btn-block"><span class="fa fa-sign-out"></span> Logout</a>
                                         </p>
                                     </div>
                                 </div>

@@ -75,8 +75,7 @@ class Api extends Ant
         $fileDescription = $params[2];
 
         $query = $this->dbo->query("CALL sp_issue_attachment_add($issueId, '$fileName', '$fileDescription')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -86,8 +85,7 @@ class Api extends Ant
         $fileName = $params[0];
 
         $query = $this->dbo->query("CALL sp_issue_attachment_delete('$fileName')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -98,8 +96,7 @@ class Api extends Ant
         $categoryDesc = $params[1];
 
         $query = $this->dbo->query("CALL sp_issue_category_create('$categoryName', '$categoryDesc')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -109,8 +106,7 @@ class Api extends Ant
         $categoryId = $params[0];
 
         $query = $this->dbo->query("CALL sp_issue_category_delete($categoryId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -120,8 +116,7 @@ class Api extends Ant
         $categoryId = $params[0];
 
         $query = $this->dbo->query("CALL sp_issue_category_get($categoryId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -133,8 +128,9 @@ class Api extends Ant
         $categoryDesc = $params[2];
 
         $query = $this->dbo->query("CALL sp_issue_category_update($categoryId, '$categoryName', '$categoryDesc')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
     }
 
     public function issueCommentAdd($params)
@@ -144,8 +140,7 @@ class Api extends Ant
         $commentText = $params[2];
 
         $query = $this->dbo->query("CALL sp_issue_comment_add($issueId, $userId, '$commentText')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
     }
 
     public function issueCreate($params)
@@ -159,8 +154,9 @@ class Api extends Ant
         $priorityId = $params[6];
 
         $query = $this->dbo->query("CALL sp_issue_create($projectId, $categoryId, '$issueTitle', '$issueDesc', $userReporter, $statusId, $priorityId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
     }
 
     public function issueDelete($params)
@@ -168,8 +164,7 @@ class Api extends Ant
         $issueId = $params[0];
 
         $query = $this->dbo->query("CALL sp_issue_delete($issueId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -179,8 +174,7 @@ class Api extends Ant
         $issueId = $params[0];
 
         $query = $this->dbo->query("CALL sp_issue_get($issueId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -198,8 +192,9 @@ class Api extends Ant
         $duplicateId = $params[8];
 
         $query = $this->dbo->query("CALL sp_issue_update($issueId, $projectId, $categoryId, '$issueTitle', '$issueDesc', $statusId, $priorityId, $resolutionId, $duplicateId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
     }
 
     public function projectCreate($params)
@@ -208,8 +203,7 @@ class Api extends Ant
         $projectDesc = $params[1];
 
         $query = $this->dbo->query("CALL sp_project_create('$projectName', '$projectDesc')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -219,8 +213,7 @@ class Api extends Ant
         $projectId = $params[0];
 
         $query = $this->dbo->query("CALL sp_project_delete($projectId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -230,8 +223,7 @@ class Api extends Ant
         $projectId = $params[0];
 
         $query = $this->dbo->query("CALL sp_project_get($projectId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -243,8 +235,7 @@ class Api extends Ant
         $projectDesc = $params[2];
 
         $query = $this->dbo->query("CALL sp_project_update($projectId, '$projectName', '$projectDesc')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -295,8 +286,7 @@ class Api extends Ant
         $userPassword = $params[4];
 
         $query = $this->dbo->query("CALL sp_user_create('$userId', $userRoleId, '$userName', '$userEmail', '$userPassword')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -306,8 +296,7 @@ class Api extends Ant
         $userId = $params[0];
 
         $query = $this->dbo->query("CALL sp_user_delete('$userId')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -317,8 +306,7 @@ class Api extends Ant
         $userId = $params[0];
 
         $query = $this->dbo->query("CALL sp_user_get('$userId')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -329,8 +317,7 @@ class Api extends Ant
         $userPassword = $params[1];
 
         $query = $this->dbo->query("CALL sp_user_password_update('$userId', '$userPassword')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -352,8 +339,7 @@ class Api extends Ant
         $userRoleDesc = $params[1];
 
         $query = $this->dbo->query("CALL sp_user_role_create('$userRoleName', '$userRoleDesc')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -363,8 +349,7 @@ class Api extends Ant
         $userRoleId = $params[0];
 
         $query = $this->dbo->query("CALL sp_user_role_delete($userRoleId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -374,8 +359,7 @@ class Api extends Ant
         $userRoleId = $params[0];
 
         $query = $this->dbo->query("CALL sp_user_role_get($userRoleId)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -387,8 +371,7 @@ class Api extends Ant
         $userRoleDesc = $params[2];
 
         $query = $this->dbo->query("CALL sp_user_role_update($userRoleId, '$userRoleName', '$userRoleDesc')");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
@@ -402,8 +385,7 @@ class Api extends Ant
         $userActive = $params[4];
 
         $query = $this->dbo->query("CALL sp_user_update($projectId, $userRoleId, '$userName', '$userEmail', $userActive)");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $query->fetchAll();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }

@@ -35,7 +35,7 @@ class SessionHandler
 
         else if ($this->sessionActive)
         {
-            $this->sessionUserId = isset($_SESSION['user_active_id']) ? $_SESSION['user_active_id'] : null;
+            $this->sessionUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
         }
 
         else
@@ -47,9 +47,12 @@ class SessionHandler
     // Validate session activity
     private function isSessionExpired()
     {
-        var_dump($_SESSION);
-        echo "(".time()." - $this->sessionLastUpdate) > $this->sessionTimeout)";
-        if ((time() - $this->sessionLastUpdate) > $this->sessionTimeout)
+        if (! $this->sessionActive)
+        {
+            return true;
+        }
+
+        else if ($this->sessionTimeout < (time() - $this->sessionLastUpdate))
         {
             return true;
         }
@@ -76,9 +79,6 @@ class SessionHandler
 
     private function sessionExit()
     {
-        $path = pathinfo( $_SERVER['SCRIPT_NAME'] );
-        $dir = $path['dirname'];
-
         // remove all session variables
         session_unset();
 
@@ -89,24 +89,31 @@ class SessionHandler
     public function isValidSession()
     {
         // verify session data
-        if (isset($this->sessionUserId) && ! $this->isSessionExpired())
+        if (isset($this->sessionUserId))
         {
             $api = new Api();
 
-            // validate user and password
+            // Try to get matching user information
             $id = array($this->sessionUserId);
             $user = $api->executeApiCall('userGet', $id);
+            $userInfo = ! empty($user) ? $user : null;
 
-            if ($user) $userInfo = $user[0];
-
+            // The user exists
             if (isset($userInfo))
             {
+                // Is the user trying to login?
                 if (isset($this->sessionUserPassword))
                 {
                     if (! password_verify($this->sessionUserPassword, $userInfo['password']))
                     {
                         $this->sessionError = true;
                     }
+                }
+
+                // Is the current session expired?
+                else if ($this->isSessionExpired())
+                {
+                    $this->sessionError = true;
                 }
             }
 
@@ -125,12 +132,14 @@ class SessionHandler
         {
             $this->sessionReset();
             $this->sessionExit();
+
             return false;
         }
 
         else
         {
             $this->sessionInit();
+
             return true;
         }
     }

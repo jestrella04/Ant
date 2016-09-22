@@ -1,4 +1,1 @@
-<header id="SiteHeader">
 
-</header>
-    

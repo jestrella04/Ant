@@ -1,4 +1,6 @@
 <?php
+namespace Ant;
+
 function slugify($text, $makeLowerCase = true)
 {
 	// replace non letter or digits by -
@@ -61,4 +63,33 @@ function userPermissionCheck($permission, $permissionList)
 	}
 
 	return false;
+}
+
+function loadController($controller, $identifier)
+{
+	// create a new instance of the needed controller
+	switch($controller)
+	{
+		case 'Issue':
+			$controller = new Issue($identifier);
+			break;
+
+		case 'Project':
+			$controller = new Project($identifier);
+			break;
+
+		case 'Admin':
+			$controller = new Admin($identifier);
+			break;
+
+		case 'Report':
+			$controller = new Report($identifier);
+			break;
+
+		case 'User':
+			$controller = new Home();
+			break;
+	}
+
+	return $controller;
 }
