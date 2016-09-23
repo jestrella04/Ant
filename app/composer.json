@@ -18,7 +18,7 @@
     "autoload": {
         "psr-4": {
             "Ant\\": "_/inc/ant",
-            "Ant\\Controller\\": "_/inc/controller",
+            "Ant\\Controller\\": "_/inc/controller"
         }
     }
 }

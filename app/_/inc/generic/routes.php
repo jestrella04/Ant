@@ -1,31 +1,48 @@
 <?php
 namespace Ant\Controller;
 
-switch($controller)
+// Load main controller
+$mainController = new Main();
+
+// Check if requested controller is valid
+$isValidController = $mainController->isValidController($controller);
+$controller = $isValidController ? $controller : 'error';
+
+// Load the requested controller
+switch ($controller)
 {
-  case 'Issue':
-    $controller = new Issue($identifier);
-    break;
+    case 'issue':
+        $controller = new Issue($identifier);
+        break;
 
-  case 'Project':
-    $controller = new Project($identifier);
-    break;
+    case 'project':
+        $controller = new Project($identifier);
+        break;
 
-  case 'Admin':
-    $controller = new Admin($identifier);
-    break;
+    case 'admin':
+        $controller = new Admin($identifier);
+        break;
 
-  case 'Report':
-    $controller = new Report($identifier);
-    break;
+    case 'report':
+        $controller = new Report($identifier);
+        break;
 
-  case 'User':
-    $controller = new User($identifier);
-    break;
+    case 'user':
+        $controller = new User($identifier);
+        break;
 
-  case 'Home':
-    $controller = new Home();
-    break;
+    case 'home':
+        $controller = new Home();
+        break;
+
+    case 'error':
+        $controller = new Error();
+        break;
 }
 
+// Prepopulate some data used on the views
+if (method_exists($controller, 'setCurrentUser')) $controller->setCurrentUser($currentUser);
+if (method_exists($controller, 'setCurrentUserPermissions')) $controller->setCurrentUserPermissions($currentUserPermissions);
+
+// Load the view
 $controller->loadView();

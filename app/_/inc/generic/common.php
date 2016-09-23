@@ -1,5 +1,4 @@
 <?php
-namespace Ant;
 
 function slugify($text, $makeLowerCase = true)
 {
