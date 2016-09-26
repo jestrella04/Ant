@@ -3,7 +3,7 @@ namespace Ant\Controller;
 
 use Ant;
 
-class Home
+class Issue
 {
     private $currentUser;
     private $currentUserPermissions;
@@ -20,31 +20,21 @@ class Home
 
     public function loadView()
     {
-        if (! isset($this->currentUser))
-        {
-            // Print data on screen
-            require_once ('_/inc/view/home/login.php');
-        }
-
-        else if (userPermissionCheck('issue_view', $this->currentUserPermissions) )
+        if (userPermissionCheck('issue_view', $this->currentUserPermissions) )
         {
             // Get needed data from database
             $issuesReport = new Ant\Report('issues', 0, 0, 25);
-            $activityReport = new Ant\Report('activity', 0, 0, 25);
-
-            $issues = $issuesReport->getData();
-            $activities = $activityReport->getData();
 
             // Print data on screen
             require_once ('_/inc/generic/navbar.php');
-            require_once ('_/inc/view/home/main.php');
+            require_once ('_/inc/view/issue/main.php');
         }
 
         else
         {
             // Print data on screen
             require_once ('_/inc/generic/navbar.php');
-            require_once ('_/inc/view/error/error.php');
+            require_once ('_/inc/view/issue/error.php');
         }
     }
 }

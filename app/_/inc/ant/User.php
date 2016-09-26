@@ -15,9 +15,10 @@ class User
     {
         $api = new Api;
 
-        $id = array($id);
-        $userInfo = $api->executeApiCall('userGet', $id);
-        $permission = $api->executeApiCall('userPermissionGet', $id);
+        $params = array();
+        $params['user_id'] = $id;
+        $userInfo = $api->executeApiCall('userGet', $params);
+        $permission = $api->executeApiCall('userPermissionGet', $params);
 
         if ($userInfo)
         {

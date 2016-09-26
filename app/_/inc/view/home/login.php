@@ -1,7 +1,7 @@
 <div class="form-login-container">
     <form class="form-login" role="form" action="" method="post" autocomplete="off">
-        <div class="logo text-center">
-            <img src="_/img/ant-logo.png" class="icon">
+        <div class="login-logo text-center">
+            <img src="_/img/ant-logo.png">
         </div>
 
         <h2 class="form-login-heading">Ant Bug Tracker<br><small>Please sign in</small></h2>

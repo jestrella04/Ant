@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width">
 
         <!-- Custom Favicon -->
-        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="shortcut icon" href="_/img/ant-logo.png">
 
         <!-- build:css({.tmp,app}) _/css/bootstrap.css -->
         <link rel="stylesheet" href="_/bower_components/bootstrap/dist/css/bootstrap.css">

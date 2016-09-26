@@ -94,8 +94,9 @@ class SessionHandler
             $api = new Api();
 
             // Try to get matching user information
-            $id = array($this->sessionUserId);
-            $user = $api->executeApiCall('userGet', $id);
+            $params = array();
+            $params['user_id'] = $this->sessionUserId;
+            $user = $api->executeApiCall('userGet', $params);
             $userInfo = ! empty($user) ? $user : null;
 
             // The user exists
