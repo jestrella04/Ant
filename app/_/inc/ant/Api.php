@@ -20,9 +20,11 @@ class Api extends Ant
             'issueCategoryGet',
             'issueCategoryUpdate',
             'issueCommentAdd',
+            'issueCommentsGet',
             'issueCreate',
             'issueDelete',
             'issueGet',
+            'issueTagsGet',
             'issueUpdate',
             'projectCreate',
             'projectDelete',
@@ -140,6 +142,18 @@ class Api extends Ant
 
         $query = $this->dbo->query("CALL sp_issue_comment_add($issueId, $userId, '$commentText')");
         $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function issueCommentsGet($params)
+    {
+        $issueId = $params['issue_id'];
+
+        $query = $this->dbo->query("CALL sp_issue_comments_get($issueId)");
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
     }
 
     public function issueCreate($params)
@@ -173,6 +187,16 @@ class Api extends Ant
         $issueId = $params['issue_id'];
 
         $query = $this->dbo->query("CALL sp_issue_get($issueId)");
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function issueTagsGet($params)
+    {
+        $issueId = $params['issue_id'];
+
+        $query = $this->dbo->query("CALL sp_issue_tags_get($issueId)");
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;

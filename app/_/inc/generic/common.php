@@ -68,10 +68,15 @@ function printLink($destination, $text='', $title = '', $icon = '')
 {
 	if (! empty($icon))
 	{
-		$text = '<i class="fa '.$icon.'" aria-hidden="true"></i> '.$text;
+		$text = printIcon($icon) . " $text";
 	}
 
 	return '<a href="'.$destination.'" title="'.$title.'">'.$text.'</a>';
+}
+
+function printIcon($icon)
+{
+	return '<i class="fa '.$icon.'" aria-hidden="true"></i>';
 }
 
 function printStatus($status, $description)

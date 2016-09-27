@@ -23,7 +23,12 @@ class Issue
         if (userPermissionCheck('issue_view', $this->currentUserPermissions) )
         {
             // Get needed data from database
-            $issuesReport = new Ant\Report('issues', 0, 0, 25);
+            $issueId = intval($GLOBALS['identifier']);
+            $issue = new Ant\Issue($issueId);
+            
+            $issueDetails = $issue->getData();
+            $issueComments = $issue->getComments();
+            $issueTags = $issue->getTags();
 
             // Print data on screen
             require_once ('_/inc/generic/navbar.php');

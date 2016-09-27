@@ -71,13 +71,13 @@ body {
 .navbar-login-session a .fa {
   margin-right: 0.5em; }
 
- .error-page h1 {
-     text-align:center;
-     margin-bottom: 0.8em;
- }
+.issue-heading {
+  margin-bottom: -0.6em; }
 
- .error-page p {
-     margin-bottom: 2em;
- }
+.issue-heading i.fa {
+  margin-right: 0.3em; }
+
+.section-divider {
+  margin: 2em 0; }
 
 /*# sourceMappingURL=layout.css.map */

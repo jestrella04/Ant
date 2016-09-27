@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-right">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    <i class="fa fa-bug" aria-hidden="true"></i>
                 </div>
                 <h1 class="panel-title">Recent Issues</h1>
             </div>
@@ -32,7 +32,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-right">
-                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
                 </div>
                 <h1 class="panel-title">Recent Activity</h1>
             </div>

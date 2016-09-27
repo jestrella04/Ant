@@ -10,7 +10,7 @@ require ('_/inc/generic/init.php');
         <?php require ('_/inc/generic/head.php'); ?>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <!-- Main content -->
             <?php require ('_/inc/generic/routes.php'); ?>
 
