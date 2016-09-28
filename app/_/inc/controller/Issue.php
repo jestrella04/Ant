@@ -25,10 +25,11 @@ class Issue
             // Get needed data from database
             $issueId = intval($GLOBALS['identifier']);
             $issue = new Ant\Issue($issueId);
-            
+
             $issueDetails = $issue->getData();
             $issueComments = $issue->getComments();
             $issueTags = $issue->getTags();
+            $issueFiles = $issue->getFiles();
 
             // Print data on screen
             require_once ('_/inc/generic/navbar.php');

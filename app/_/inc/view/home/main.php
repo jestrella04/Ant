@@ -3,8 +3,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-right">
-                    <i class="fa fa-bug" aria-hidden="true"></i>
+                    <?php echo printIcon('fa-bug fa-fw') ?>
                 </div>
+
                 <h1 class="panel-title">Recent Issues</h1>
             </div>
 
@@ -32,9 +33,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="pull-right">
-                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                    <?php echo printIcon('fa-bullhorn fa-fw') ?>
                 </div>
-                <h1 class="panel-title">Recent Activity</h1>
+
+                <h3 class="panel-title">Recent Activity</h3>
             </div>
 
             <table class="table table-hover">

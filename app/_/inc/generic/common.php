@@ -84,7 +84,7 @@ function printStatus($status, $description)
 	switch ($status)
 	{
 		case 'Pending':
-			return '<span class="label label-default" title="'.$description.'">'.$status.'</span>';
+			return '<span class="label label-info" title="'.$description.'">'.$status.'</span>';
 			break;
 
 		case 'Confirmed':
@@ -92,7 +92,7 @@ function printStatus($status, $description)
 			break;
 
 		case 'Dismissed':
-			return '<span class="label label-danger" title="'.$description.'">'.$status.'</span>';
+			return '<span class="label label-default" title="'.$description.'">'.$status.'</span>';
 			break;
 
 		case 'Assigned':
@@ -104,12 +104,12 @@ function printStatus($status, $description)
 			break;
 
 		case 'Reopened':
-			return '<span class="label label-info" title="'.$description.'">'.$status.'</span>';
+			return '<span class="label label-danger" title="'.$description.'">'.$status.'</span>';
 			break;
 
 		default:
-		return '<span class="label label-default" title="'.$description.'">'.$status.'</span>';
-		break;
+			return '<span class="label label-default" title="'.$description.'">'.$status.'</span>';
+			break;
 	}
 }
 
@@ -137,4 +137,36 @@ function printActivity($user, $action, $issueId)
 		return "$user completed an unknown action on issue <a href=\"index.php/issue/$issueId\">$issueId</a>.";
 		break;
 	}
+}
+
+function printTags($tags)
+{
+	$output = '';
+
+	if (is_array($tags))
+	{
+		foreach ($tags as $tag)
+		{
+			$output = $output .', <a href="index.php/browse/tag/'.$tag.'">'.$tag.'</a>';
+		}
+	}
+
+	return $output;
+}
+
+function printAttachments($files)
+{
+	$output = '';
+
+	if (is_array($files))
+	{
+		foreach ($files as $file)
+		{
+			$output = $output .', <a href="_/uploads/'.$file.'">'.$file.'</a>';
+		}
+	}
+
+	if (empty($output)) $output = '<p>There are currently no attachments related to this item.</p>';
+
+	return $output;
 }

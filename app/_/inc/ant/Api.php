@@ -13,8 +13,8 @@ class Api extends Ant
 
         $this->validApiCalls = array(
             'clientSessionPrepare',
-            'issueAttachmentAdd',
-            'issueAttachmentDelete',
+            'issueFileAdd',
+            'issueFileDelete',
             'issueCategoryCreate',
             'issueCategoryDelete',
             'issueCategoryGet',
@@ -24,6 +24,7 @@ class Api extends Ant
             'issueCreate',
             'issueDelete',
             'issueGet',
+            'issueFileGet',
             'issueTagsGet',
             'issueUpdate',
             'projectCreate',
@@ -69,23 +70,23 @@ class Api extends Ant
         return false;
     }
 
-    public function issueAttachmentAdd($params)
+    public function issueFileAdd($params)
     {
         $issueId = $params['user_id'];
         $fileName = $params['file_name'];
         $fileDescription = $params['file_description'];
 
-        $query = $this->dbo->query("CALL sp_issue_attachment_add($issueId, '$fileName', '$fileDescription')");
+        $query = $this->dbo->query("CALL sp_issue_file_add($issueId, '$fileName', '$fileDescription')");
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
 
-    public function issueAttachmentDelete($params)
+    public function issueFileDelete($params)
     {
         $fileName = $params['file_name'];
 
-        $query = $this->dbo->query("CALL sp_issue_attachment_delete('$fileName')");
+        $query = $this->dbo->query("CALL sp_issue_file_delete('$fileName')");
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
@@ -187,6 +188,16 @@ class Api extends Ant
         $issueId = $params['issue_id'];
 
         $query = $this->dbo->query("CALL sp_issue_get($issueId)");
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function issueFileGet($params)
+    {
+        $issueId = $params['issue_id'];
+
+        $query = $this->dbo->query("CALL sp_issue_file_get($issueId)");
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;

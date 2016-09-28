@@ -8,6 +8,7 @@ class Issue
     private $issueActivity;
     private $issueComments;
     private $issueTags;
+    private $issueFiles;
     private $api;
 
     public function __construct($issueId)
@@ -19,6 +20,7 @@ class Issue
         $this->setActivity();
         $this->setComments();
         $this->setTags();
+        $this->setFiles();
     }
 
     public function getData()
@@ -39,6 +41,11 @@ class Issue
     public function getTags()
     {
         return $this->issueTags;
+    }
+
+    public function getFiles()
+    {
+        return $this->issueFiles;
     }
 
     private function setData()
@@ -71,5 +78,13 @@ class Issue
         $params['issue_id'] = $this->issueId;
 
         $this->issueTags = $this->api->executeApiCall('issueTagsGet', $params);
+    }
+
+    public function setFiles()
+    {
+        $params = array();
+        $params['issue_id'] = $this->issueId;
+
+        $this->issueFiles = $this->api->executeApiCall('issueFileGet', $params);
     }
 }

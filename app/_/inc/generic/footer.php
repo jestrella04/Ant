@@ -1,7 +1,5 @@
 <footer id="site-footer">
-	<hr>
-
 	<p class="text-center">
-		<small><a href="#">Proudly powered by Ant</a></small>
+		<small>Proudly powered by <a href="#">Ant</a></small>
 	</p>
 </footer>
