@@ -49,17 +49,17 @@
         <div class="row">
             <div class="col-md-4">
                 <p class="issue-data-inline"><?php echo printIcon('fa-calendar fa-fw') ?> Date created:</p>
-                <p class="issue-data-inline"><?php echo $issueDetails['created_date'] ?></p>
+                <p class="issue-data-inline"><?php echo $issueDetails['date_created'] ?></p>
             </div>
 
             <div class="col-md-4">
                 <p class="issue-data-inline"><?php echo printIcon('fa-calendar fa-fw') ?> Date updated:</p>
-                <p class="issue-data-inline"><?php echo $issueDetails['updated_date'] ?></p>
+                <p class="issue-data-inline"><?php echo $issueDetails['date_updated'] ?></p>
             </div>
 
             <div class="col-md-4">
                 <p class="issue-data-inline"><?php echo printIcon('fa-calendar fa-fw') ?> Date resolved:</p>
-                <p class="issue-data-inline"><?php echo $issueDetails['resolution_date'] ?></p>
+                <p class="issue-data-inline"><?php echo $issueDetails['date_resolved'] ?></p>
             </div>
         </div>
 

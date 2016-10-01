@@ -12,9 +12,6 @@ class Api extends Ant
         parent::__construct();
 
         $this->validApiCalls = array(
-            'clientSessionPrepare',
-            'issueFileAdd',
-            'issueFileDelete',
             'issueCategoryCreate',
             'issueCategoryDelete',
             'issueCategoryGet',
@@ -25,6 +22,8 @@ class Api extends Ant
             'issueDelete',
             'issueGet',
             'issueFileGet',
+            'issueFileAdd',
+            'issueFileDelete',
             'issueTagsGet',
             'issueUpdate',
             'projectCreate',
@@ -147,11 +146,11 @@ class Api extends Ant
         return $data;
     }
 
-    public function issueCommentsGet($params)
+    public function issueCommentGet($params)
     {
         $issueId = $params['issue_id'];
 
-        $query = $this->dbo->query("CALL sp_issue_comments_get($issueId)");
+        $query = $this->dbo->query("CALL sp_issue_comment_get($issueId)");
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
@@ -203,11 +202,11 @@ class Api extends Ant
         return $data;
     }
 
-    public function issueTagsGet($params)
+    public function issueTagGet($params)
     {
         $issueId = $params['issue_id'];
 
-        $query = $this->dbo->query("CALL sp_issue_tags_get($issueId)");
+        $query = $this->dbo->query("CALL sp_issue_tag_get($issueId)");
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;
@@ -223,9 +222,8 @@ class Api extends Ant
         $statusId = $params['status_id'];
         $priorityId = $params['priority_id'];
         $resolutionId = $params['resolution_id'];
-        $duplicateId = $params['duplicate_id'];
 
-        $query = $this->dbo->query("CALL sp_issue_update($issueId, $projectId, $categoryId, '$issueTitle', '$issueDesc', $statusId, $priorityId, $resolutionId, $duplicateId)");
+        $query = $this->dbo->query("CALL sp_issue_update($issueId, $projectId, $categoryId, '$issueTitle', '$issueDesc', $statusId, $priorityId, $resolutionId)");
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
         return $data;

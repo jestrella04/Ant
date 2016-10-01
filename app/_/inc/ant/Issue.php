@@ -69,7 +69,7 @@ class Issue
         $params = array();
         $params['issue_id'] = $this->issueId;
 
-        $this->issueComments = $this->api->executeApiCall('issueCommentsGet', $params);
+        $this->issueComments = $this->api->executeApiCall('issueCommentGet', $params);
     }
 
     public function setTags()
@@ -77,7 +77,7 @@ class Issue
         $params = array();
         $params['issue_id'] = $this->issueId;
 
-        $this->issueTags = $this->api->executeApiCall('issueTagsGet', $params);
+        $this->issueTags = $this->api->executeApiCall('issueTagGet', $params);
     }
 
     public function setFiles()
