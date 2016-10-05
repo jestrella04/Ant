@@ -31,6 +31,7 @@ class Api extends Ant
             'projectGet',
             'projectUpdate',
             'reportIssues',
+            'reportProjects',
             'reportActivity',
             'userCreate',
             'userDelete',
@@ -279,6 +280,15 @@ class Api extends Ant
         $count = $params['report_count'];
 
         $query = $this->dbo->query("CALL sp_report_issues($projectId, $offset, $count)");
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $data = $query->fetchAll();
+
+        return $data;
+    }
+
+    public function reportProjects()
+    {
+        $query = $this->dbo->query("CALL sp_report_projects()");
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $data = $query->fetchAll();
 

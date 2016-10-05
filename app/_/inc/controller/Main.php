@@ -9,7 +9,7 @@ class Main
     {
         $this->controllerList = array(
             'issue',
-            'project',
+            'browse',
             'admin',
             'report',
             'user',

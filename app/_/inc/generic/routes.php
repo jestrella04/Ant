@@ -15,8 +15,8 @@ switch ($controller)
         $controller = new Issue($identifier);
         break;
 
-    case 'project':
-        $controller = new Project($identifier);
+    case 'browse':
+        $controller = new Browse($identifier);
         break;
 
     case 'admin':

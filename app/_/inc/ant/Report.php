@@ -27,6 +27,10 @@ class Report
                 $this->getIssuesData();
                 break;
 
+            case 'projects':
+                $this->getProjectsData();
+                break;
+
             case 'activity':
                 $this->getActivityData();
                 break;
@@ -47,6 +51,13 @@ class Report
         $params['report_count'] = $this->count;
 
         $this->reportData = $this->api->executeApiCall('reportIssues', $params);
+    }
+
+    private function getProjectsData()
+    {
+        $params = array();
+
+        $this->reportData = $this->api->executeApiCall('reportProjects', $params);
     }
 
     private function getActivityData()

@@ -15,10 +15,10 @@ class SessionHandler
     public function __construct()
     {
         $this->sessionError = false;
-        $this->sessionTimeout = 15 * 60;
+        $this->sessionTimeout = 30 * 60;
         $this->sessionLastUpdate = isset($_SESSION['user_last_update']) ? $_SESSION['user_last_update'] : 0;
         $this->sessionLogin = isset($_POST['user_login']) ? $_POST['user_login'] : false;
-        $this->sessionLogout = isset($_POST['user_logout']) ? $_POST['user_logout'] : false;
+        $this->sessionLogout = isset($_GET['user_logout']) ? $_GET['user_logout'] : false;
         $this->sessionActive = isset($_SESSION['user_active']) ? $_SESSION['user_active'] : false;
 
         if ($this->sessionLogout)

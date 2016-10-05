@@ -5,8 +5,14 @@ use Ant;
 
 class Issue
 {
+    private $issueId;
     private $currentUser;
     private $currentUserPermissions;
+
+    public function __construct($issueId)
+    {
+        $this->issueId = $issueId;
+    }
 
     public function setCurrentUser($currentUser)
     {
@@ -23,8 +29,7 @@ class Issue
         if (userPermissionCheck('issue_view', $this->currentUserPermissions) )
         {
             // Get needed data from database
-            $issueId = intval($GLOBALS['identifier']);
-            $issue = new Ant\Issue($issueId);
+            $issue = new Ant\Issue($this->issueId);
 
             $issueDetails = $issue->getData();
             $issueComments = $issue->getComments();

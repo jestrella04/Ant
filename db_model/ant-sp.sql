@@ -185,6 +185,7 @@ BEGIN
         `title`,
         `description`,
         `user_reporter`,
+        `user_last_update`,
         `status_id`,
         `priority_id`,
         `resolution_id`,
@@ -197,7 +198,8 @@ BEGIN
         categoryId, 
         title, 
         description, 
-        userReporter, 
+        userReporter,
+        userReporter,
         statusId,
         priorityId,
         1,
@@ -332,11 +334,11 @@ BEGIN
 		`user_last_update`,
 		`status_id`,
         (SELECT `name` FROM `issue_status` WHERE `id` = `status_id`) AS `status_name`,
+        (SELECT `description` FROM `issue_status` WHERE `id` = `status_id`) AS `status_desc`,
 		`priority_id`,
         (SELECT `name` FROM `issue_priority` WHERE `id` = `priority_id`) AS `priority_name`,
 		`resolution_id`,
         (SELECT `name` FROM `issue_resolution` WHERE `id` = `resolution_id`) AS `resolution_name`,
-		`duplicate_id`,
 		`date_created`,
 		`date_updated`,
 		`date_resolved`
@@ -404,7 +406,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = '' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_issue_update`(
 	IN issueId INT,
@@ -414,8 +416,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_issue_update`(
     IN description LONGTEXT,
     IN statusId INT,
     IN priorityId INT,
-    IN resolutionId INT,
-    IN duplicateId INT
+    IN resolutionId INT
 )
 BEGIN
 	UPDATE `issue` SET
@@ -426,7 +427,6 @@ BEGIN
         `status_id` = statusId,
         `priority_id` = priorityId,
         `resolution_id` = resolutionId,
-        `duplicate_id` = duplicateId,
         `updated_date` = NOW()
 	WHERE `id` = issueId;
 END ;;
@@ -522,6 +522,30 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_report_activity` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_report_activity`(
+	IN reportOffset INT,
+    IN reportCount INT
+)
+BEGIN
+	SELECT * FROM `issue_history` 
+    ORDER BY `date` DESC 
+    LIMIT reportOffset, reportCount;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_report_issues` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -530,7 +554,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = '' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_report_issues`(
 	IN projectId INT,
@@ -555,17 +579,17 @@ BEGIN
 		`user_last_update`,
 		`status_id`,
         (SELECT `name` FROM `issue_status` WHERE `id` = `status_id`) AS `status_name`,
+        (SELECT `description` FROM `issue_status` WHERE `id` = `status_id`) AS `status_desc`,
 		`priority_id`,
         (SELECT `name` FROM `issue_priority` WHERE `id` = `priority_id`) AS `priority_name`,
 		`resolution_id`,
         (SELECT `name` FROM `issue_resolution` WHERE `id` = `resolution_id`) AS `resolution_name`,
-		`duplicate_id`,
-		`created_date`,
-		`updated_date`,
-		`resolution_date`
+		`date_created`,
+		`date_updated`,
+		`date_resolved`
     FROM `issue` 
     WHERE (`project_id` = projectId AND getAllProjects = 0) OR (1 AND getAllProjects = 1) 
-    ORDER BY `created_date` DESC 
+    ORDER BY `date_created` DESC 
     LIMIT reportOffset, reportCount;
 END ;;
 DELIMITER ;
@@ -573,7 +597,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_report_recent_activity` */;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_report_projects` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -583,14 +607,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_report_recent_activity`(
-	IN reportOffset INT,
-    IN reportCount INT
-)
-BEGIN
-	SELECT * FROM `issue_history` 
-    ORDER BY `issue_history_date` DESC 
-    LIMIT reportOffset, reportCount;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_report_projects`()
+BEGIN    
+	SELECT
+		p.`id`,
+		p.`name`,
+        p.`description`,
+        (SELECT count(`id`) FROM `issue` WHERE `project_id` = p.`id`) AS `count_issue`,
+        (SELECT count(`id`) FROM `issue` WHERE `project_id` = p.`id` AND `resolution_id` = 1) AS `count_unresolved`
+    FROM `project` p
+    ORDER BY `name` ASC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -842,4 +868,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-01 16:05:02
+-- Dump completed on 2016-10-04 22:13:12

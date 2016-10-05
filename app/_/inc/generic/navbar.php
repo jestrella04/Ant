@@ -18,7 +18,7 @@
                 <li><?php echo printLink('index.php/browse/issues/', 'Issues', 'Browse all issues', 'fa-bug fa-fw') ?></li>
                 <li><?php echo printLink('index.php/admin/', 'Admin', 'Configure Ant', 'fa-cogs fa-fw') ?></li>
                 <li class="hidden-md hidden-lg"><?php echo printLink('index.php/user/', 'My Profile', 'View my profile', 'fa-user fa-fw') ?></li>
-                <li class="hidden-md hidden-lg"><?php echo printLink('index.php/logout/', 'Logout', 'Log out of the system', 'fa-sign-out fa-fw') ?></li>
+                <li class="hidden-md hidden-lg"><?php echo printLink('index.php/?user_logout=true', 'Logout', 'Log out of the system', 'fa-sign-out fa-fw') ?></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
@@ -56,7 +56,7 @@
                                                 <?php echo printIcon('fa-user fa-fw') ?> My Profile
                                             </a>
 
-                                            <a href="index.php/logout/" class="btn btn-danger btn-block">
+                                            <a href="index.php/?user_logout=true" class="btn btn-danger btn-block">
                                                 <?php echo printIcon('fa-sign-out fa-fw') ?> Logout
                                             </a>
                                         </p>
