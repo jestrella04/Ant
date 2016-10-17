@@ -15,6 +15,7 @@ class Main
             'user',
             'home',
             'error',
+            'create'
         );
     }
 

@@ -8,10 +8,12 @@ class Browse
     private $browseContentId;
     private $currentUser;
     private $currentUserPermissions;
+    private $api;
 
     public function __construct($contentId)
     {
         $this->browseContentId = $contentId;
+        $this->api = new Ant\Api();
     }
 
     public function setCurrentUser($currentUser)
@@ -30,7 +32,21 @@ class Browse
         {
             case 'issues':
                 // Get needed data from database
-                $issuesReport = new Ant\Report('issues', 0, 0, 50);
+                $params = array();
+                $params['project_id'] = isset($_GET['projectId']) ? intval($_GET['projectId']) : 0;
+
+                if (0 < $params['project_id'])
+                {
+                    $project = $this->api->executeApiCall('projectGet', $params);
+                    $projectName = $project['name'];
+                }
+
+                else
+                {
+                    $projectName = 'All';
+                }
+
+                $issuesReport = new Ant\Report('issues', $params['project_id'], 0, 50);
                 $issues = $issuesReport->getData();
 
                 // Print data on screen

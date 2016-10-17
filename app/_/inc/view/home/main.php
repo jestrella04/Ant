@@ -19,7 +19,7 @@
                 <tbody>
                     <?php foreach ($issues as $issue):?>
                         <tr>
-                            <td class="col-md-3"><?php echo printLink('index.php/project/'.$issue['project_id'], $issue['project_name']) ?></td>
+                            <td class="col-md-3"><?php echo printLink('index.php/browse/issues/?projectId='.$issue['project_id'], $issue['project_name']) ?></td>
                             <td class="col-md-2"><?php echo printStatus($issue['status_name'], $issue['status_desc']) ?></td>
                             <td class="col-md-7"><?php echo $issue['title'] .' ['. printLink('index.php/issue/'.$issue['id'], $issue['id']) ?>]</td>
                         </tr>

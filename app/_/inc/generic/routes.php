@@ -38,6 +38,10 @@ switch ($controller)
     case 'error':
         $controller = new Error();
         break;
+
+    case 'create':
+        $controller = new Create($identifier);
+        break;
 }
 
 // Prepopulate some data used on the views

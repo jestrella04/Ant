@@ -3,10 +3,16 @@ namespace Ant\Controller;
 
 use Ant;
 
-class Home
+class Create
 {
+    private $createContentType;
     private $currentUser;
     private $currentUserPermissions;
+
+    public function __construct($contentType)
+    {
+        $this->createContentType = $contentType;
+    }
 
     public function setCurrentUser($currentUser)
     {
@@ -20,29 +26,22 @@ class Home
 
     public function loadView()
     {
-        if (! isset($this->currentUser))
+        if ('issue' == $this->createContentType && userPermissionCheck('issue_add', $this->currentUserPermissions))
         {
-            // Print data on screen
-            require_once ('_/inc/view/home/login.php');
-        }
-
-        else if (userPermissionCheck('issue_view', $this->currentUserPermissions))
-        {
-            // Get needed data from database
-            $issuesReport = new Ant\Report('issues', 0, 0, 25);
-            $activityReport = new Ant\Report('activity', 0, 0, 25);
-
-            $issues = $issuesReport->getData();
-            $activities = $activityReport->getData();
-
             // Print data on screen
             require_once ('_/inc/generic/navbar.php');
-            require_once ('_/inc/view/home/main.php');
+            require_once ('_/inc/view/create/issue.php');
+        }
+
+        else if ('project' == $this->createContentType && userPermissionCheck('project_add', $this->currentUserPermissions))
+        {
+            // Print data on screen
+            require_once ('_/inc/generic/navbar.php');
+            require_once ('_/inc/view/create/project.php');
         }
 
         else
         {
-            // Print data on screen
             require_once ('_/inc/generic/navbar.php');
             require_once ('_/inc/view/error/error.php');
         }

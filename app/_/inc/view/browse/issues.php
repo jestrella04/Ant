@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-md-12">
+        <h4>Project: <?php echo $projectName ?>.</h4>
         <div class="panel panel-default">
             <div class="table-responsive">
                 <table class="table table-hover">

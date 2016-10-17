@@ -21,7 +21,7 @@
                                 <td class="col-md-2"><span class="badge"><?php echo $project['count_unresolved'] ?></span></td>
                                 <td class="col-md-2">
                                     <div class="btn-group btn-group-xs" role="group" aria-label="">
-                                        <button type="button" class="btn btn-default">Browse</button>
+                                        <a class="btn btn-default" href="index.php/browse/issues/?projectId=<?php echo $project['id'] ?>">Browse</a>
                                         <button type="button" class="btn btn-default">Edit</button>
                                         <button type="button" class="btn btn-default">Delete</button>
                                     </div>
