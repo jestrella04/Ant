@@ -110,7 +110,7 @@
 
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="#"><?php echo printIcon('fa-comment-o fa-fw') ?> Comments</a></li>
-                    <li role="presentation"><a href="#"><?php echo printIcon('fa-tasks fa-fw') ?> History:</p></a></li>
+                    <li role="presentation"><a href="#"><?php echo printIcon('fa-tasks fa-fw') ?> History</p></a></li>
                 </ul>
             </div>
         </div>
