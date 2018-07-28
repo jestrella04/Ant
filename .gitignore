@@ -1,5 +1,6 @@
-.sass-cache
-.tmp
-.bak
-dist
-node_modules
+/vendor/
+/logs/*
+!/logs/README.md
+/node_modules/
+.env
+Thumbs.db
