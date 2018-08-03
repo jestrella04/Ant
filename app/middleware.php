@@ -10,7 +10,7 @@ $loggedInMiddleware = function (Request $request, Response $response, $next) {
 	    
 	if ($route) {
 		$routeName = $route->getName();
-		$groups = $route->getGroups();
+		$routePath = $request->getUri()->getPath();
 		$methods = $route->getMethods();
 		$arguments = $route->getArguments();
         
@@ -34,12 +34,15 @@ $loggedInMiddleware = function (Request $request, Response $response, $next) {
 		} else if (in_array($routeName, $publicRoutesArray)) {
 			// Redirect to the public route
 			$response = $next($request, $response);
-		} else if ('login' !== $routeName && empty($groups)) {
+		} else if (strpos($routePath, 'json') === 0) {
+			// Return unauthorized response status
+			$response = $response->withStatus(403);
+		} else if ('login' !== $routeName) {
 			// Redirect to the login page
 			$response = $response->withStatus(302)->withHeader('Location', safeUrlFormat('/login'));
 		}
 	} else {
-		$response = $this->renderer->render($response->withStatus(404), 'error/404.php');
+		$response = $this->renderer->render($response->withStatus(404), 'error/notfound.php');
 	}
 
 	return $response;

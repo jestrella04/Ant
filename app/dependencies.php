@@ -46,10 +46,6 @@ $container['ConfigController'] = function ($c) {
 	return new App\Controllers\ConfigController($c);
 };
 
-$container['ApiController'] = function ($c) {
-	return new App\Controllers\ApiController($c);
-};
-
 $container['RenderViewController'] = function ($c) {
 	return new App\Controllers\RenderViewController($c);
 };
@@ -73,3 +69,17 @@ $container['UserController'] = function ($c) {
 $container['IssueController'] = function ($c) {
 	return new App\Controllers\IssueController($c);
 };
+
+$container['PriorityController'] = function ($c) {
+	return new App\Controllers\PriorityController($c);
+};
+
+$container['ProjectController'] = function ($c) {
+	return new App\Controllers\ProjectController($c);
+};
+
+$container['CategoryController'] = function ($c) {
+	return new App\Controllers\CategoryController($c);
+};
+
+

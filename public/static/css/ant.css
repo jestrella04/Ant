@@ -29,13 +29,19 @@
         margin-right:0.5rem;
     }
     .section-divider {
-        margin: 1rem 0;
+        margin-bottom: 1rem;
+    }
+    .section-divider-2x {
+        margin-bottom: 2rem;
+    }
+    .section-divider-3x {
+        margin-bottom: 3rem;
     }
     #site-footer {
         padding: 1rem;
     }
     .error-404 {
-        font-size: 1500%;
+        font-size: 1200%;
         font-weight: 900;
     }
     .flash-message {
@@ -61,5 +67,16 @@
     .logo img {
         max-width: 80%;
         max-height: 100px;
+    }
+    .margin-bottom-xs {
+        margin-bottom: -0.5rem;
+    }
+    .form-group .control-label {
+        font-weight: 700;
+    }
+    .card-column-title {
+        font-weight: 700;
+        font-size: 120%;
+        margin: 0;
     }
 }

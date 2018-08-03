@@ -10,7 +10,7 @@
 		<meta name="author" content="Jonathan Estrella">
 		<meta name="mobile-web-app-capable" content="yes">
 		<link rel="icon" sizes="196x196" href="static/img/ant-logo.png" type="image/png">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
         <link rel="stylesheet" href="static/css/bundle.min.css">
 	</head>
 

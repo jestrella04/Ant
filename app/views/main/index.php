@@ -6,11 +6,13 @@
 		<div class="col-md-6">
 			<div class="card">
 				<div class="card-header">
-					<div class="float-right">
-						<i class="fa fa-bug fa-fw"></i>
-					</div>
+					<div class="card-column-title">
+						<div class="float-right">
+							<i class="fa fa-bug fa-fw"></i>
+						</div>
 
-					<h5>Recent Issues</h5>
+						Recent Issues
+					</div>
 				</div>
 
 				<ul class="list-group list-group-flush">
@@ -32,11 +34,13 @@
 		<div class="col-md-6">
 			<div class="card">
 				<div class="card-header">
-					<div class="float-right">
-						<i class="fa fa-bullhorn fa-fw"></i>
-					</div>
+					<div class="card-column-title">
+						<div class="float-right">
+							<i class="fa fa-bullhorn fa-fw"></i>
+						</div>
 
-					<h5>Recent Activity</h5>
+						Recent Activity
+					</div>
 				</div>
 
 				<ul class="list-group list-group-flush">

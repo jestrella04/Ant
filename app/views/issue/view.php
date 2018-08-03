@@ -4,11 +4,13 @@
 <div class="container">
 	<div class="card">
 		<div class="card-header">
-			<div class="float-right">
-				<i class="fa fa-bug fa-fw"></i>
-			</div>
+			<div class="card-column-title">
+				<div class="float-right">
+					<i class="fa fa-bug fa-fw"></i>
+				</div>
 
-			<h5>[#<?= $issue['id'] ?>] <?= $issue['title'] ?></h5>
+				[#<?= $issue['id'] ?>] <?= $issue['title'] ?>
+			</div>
 		</div>
 
 		<div class="card-body">
@@ -53,17 +55,17 @@
 			<div class="row">
 				<div class="col-md-4">
 					<p class="issue-data-inline font-weight-bold"><i class="fa fa-calendar fa-fw"></i> Date created:</p>
-					<p class="issue-data-inline"><?= $issue['date_created'] ?></p>
+					<p class="issue-data-inline"><span class="date"><?= $issue['date_created'] ?></a></p>
 				</div>
 
 				<div class="col-md-4">
 					<p class="issue-data-inline font-weight-bold"><i class="fa fa-calendar fa-fw"></i> Date updated:</p>
-					<p class="issue-data-inline"><?= $issue['date_updated'] ?></p>
+					<p class="issue-data-inline"><span class="date"><?= $issue['date_updated'] ?></span></p>
 				</div>
 
 				<div class="col-md-4">
 					<p class="issue-data-inline font-weight-bold"><i class="fa fa-calendar fa-fw"></i> Date resolved:</p>
-					<p class="issue-data-inline"><?= $issue['date_resolved'] ?></p>
+					<p class="issue-data-inline"><span class="date"><?= $issue['date_resolved'] ?></a></p>
 				</div>
 			</div>
 

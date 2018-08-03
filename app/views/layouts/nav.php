@@ -18,13 +18,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="projects/browse" title="Browse all projects">
+                    <a class="nav-link" href="projects" title="Browse all projects">
                         <i class="fas fa-list"></i> Projects
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="issues/browse" title="Browse all issues">
+                    <a class="nav-link" href="issues" title="Browse all issues">
                         <i class="fas fa-bug"></i> Issues
                     </a>
                 </li>

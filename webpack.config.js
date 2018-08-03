@@ -13,6 +13,10 @@ module.exports = {
 					fallback: 'style-loader',
 					use: ['css-loader?minimize=true'],
 				})
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loader: "file-loader?name=../img/[name].[ext]"
 			}
 		]
 	},
@@ -23,10 +27,8 @@ module.exports = {
 	},
 	plugins: debug ? [
 		new ExtractTextPlugin({ filename: '../css/bundle.min.css' }),
-		new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
 	] : [
 		new ExtractTextPlugin({ filename: '../css/bundle.min.css' }),
-		new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
 	],
